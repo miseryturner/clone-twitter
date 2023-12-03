@@ -2,15 +2,11 @@
     <div class="px-3 pt-4 pb-2">
         <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
-                <img style="width:150px" class="me-3 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar">
+                <img style="width:150px; height:150px" class="me-3 avatar-sm rounded-circle"
+                    src="{{ $user->getImageURL() }}">
                 <div>
-                    @if ($editing ?? false)
-                        <input value="{{ $user->name }}" type="text" class="form-control">
-                    @else
-                        <h3 class="card-title mb-0"><a href="#">{{ $user->name }}</a></h3>
-                        <span class="fs-6 text-muted">{{ $user->email }}</span>
-                    @endif
+                    <h3 class="card-title mb-0"><a>{{ $user->name }}</a></h3>
+                    <span class="fs-6 text-muted">{{ $user->email }}</span>
                 </div>
             </div>
             <div>
@@ -22,21 +18,10 @@
             </div>
         </div>
         <div class="px-2 mt-4">
-            <h5 class="fs-5"> Bio : </h5>
-            @if ($editing ?? false)
-                <div class="mb-3">
-                    <textarea name="bio" class="form-control" id="bio" rows="3"></textarea>
-                    @error('content')
-                        <span class="d-block fs-6 text-danger mt-2"> {{ $message }} </span>
-                    @enderror
-                </div>
-
-                <button class="btn btn-dark btn-sm mb-3">Save</button>
-            @else
+            @if ($user->bio)
+                <h5 class="fs-5"> Bio : </h5>
                 <p class="fs-6 fw-light">
-                    This book is a treatise on the theory of ethics, very popular during the
-                    Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes
-                    from a line in section 1.10.32.
+                    {{ $user->bio }}
                 </p>
             @endif
             <div class="d-flex justify-content-start">
