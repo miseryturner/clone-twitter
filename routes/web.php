@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 // ideas
-
 Route::group(['prefix' => 'idea/', 'as' => 'idea.'], function () {
     Route::get('/{idea}', [IdeaController::class, 'show'])->name('show');
 
@@ -36,3 +36,6 @@ Route::group(['prefix' => 'idea/', 'as' => 'idea.'], function () {
         Route::post('/{idea}/comments', [CommentController::class, 'store'])->name('comments.create');
     });
 });
+
+//users
+Route::resource('users', UserController::class)->only('show', 'edit', 'update')->middleware('auth');
