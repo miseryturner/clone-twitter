@@ -8,7 +8,7 @@ data-bs-theme="dark">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav align-items-center">
             @guest
                 <li class="nav-item">
                     <a class="{{Route::is('login') ? 'active' : ''}} nav-link" aria-current="page" href="{{ route('login') }}">Login</a>
@@ -18,6 +18,11 @@ data-bs-theme="dark">
                 </li>
             @endguest
             @auth
+                @if (Auth::user()->is_admin)
+                    <li class="nav-item">
+                        <a class="{{Route::is('admin.dashboard') ? 'active' : ''}} nav-link" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a class="{{Route::is('profile') ? 'active' : ''}} nav-link" href="{{ route('profile') }}">{{ Auth::user()->email }}</a>
                 </li>
