@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="d-flex align-items-center flex-row-reverse">
-                @can('idea.edit', $idea)
+                @can('update', $idea)
                     <form method="POST" action="{{ route('idea.destroy', $idea->id) }}">
                         @csrf
                         @method('delete')
@@ -18,7 +18,7 @@
                     </form>
                 @endcan
                 <a class="mx-2" href="{{ route('idea.show', $idea->id) }}">View</a>
-                @can('idea.delete', $idea)
+                @can('delete', $idea)
                     <a href="{{ route('idea.edit', $idea->id) }}">Edit</a>
                 @endcan
             </div>
