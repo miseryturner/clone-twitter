@@ -18,8 +18,4 @@ class DashboardController extends Controller
             'ideas' => $ideas->paginate(5)
         ]);
     }
-
-    public function test () {
-        $ideas = Idea::where();
-    }
 }
