@@ -10,17 +10,17 @@
                 </div>
             </div>
             <div class="d-flex align-items-center flex-row-reverse">
-                @if (auth()->id() == $idea->user->id)
+                @can('idea.edit', $idea)
                     <form method="POST" action="{{ route('idea.destroy', $idea->id) }}">
                         @csrf
                         @method('delete')
                         <button class="btn btn-danger btn-sm">X</button>
                     </form>
-                @endif
+                @endcan
                 <a class="mx-2" href="{{ route('idea.show', $idea->id) }}">View</a>
-                @if (auth()->id() == $idea->user->id)
+                @can('idea.delete', $idea)
                     <a href="{{ route('idea.edit', $idea->id) }}">Edit</a>
-                @endif
+                @endcan
             </div>
         </div>
     </div>
